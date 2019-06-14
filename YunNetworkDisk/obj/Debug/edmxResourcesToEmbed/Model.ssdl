@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=E:\桌面\YunNetworkDisk.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Filedate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="MD5Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="FatherFolder" Type="integer" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="FullPath" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="RelativePath" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="Date" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Floder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="FatherDirectory" Type="integer" Nullable="false" />
+    <Property Name="FullPath" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="RelativePath" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="Date" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Share">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileID" Type="integer" Nullable="false" />
+    <Property Name="Type" Type="integer" Nullable="false" />
+    <Property Name="ShareCode" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="Path" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="StartTime" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+    <Property Name="EndTime" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Filedate_0_0">
+    <End Role="Floder" Type="Self.Floder" Multiplicity="1" />
+    <End Role="Filedate" Type="Self.Filedate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Floder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Filedate">
+        <PropertyRef Name="FatherFolder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_0_0">
+    <End Role="Filedate" Type="Self.Filedate" Multiplicity="1" />
+    <End Role="Share" Type="Self.Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filedate">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mainModelStoreContainer">
+    <EntitySet Name="Filedate" EntityType="Self.Filedate" store:Type="Tables" />
+    <EntitySet Name="Floder" EntityType="Self.Floder" store:Type="Tables" />
+    <EntitySet Name="Share" EntityType="Self.Share" store:Type="Tables" />
+    <AssociationSet Name="FK_Filedate_0_0" Association="Self.FK_Filedate_0_0">
+      <End Role="Floder" EntitySet="Floder" />
+      <End Role="Filedate" EntitySet="Filedate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_0_0" Association="Self.FK_Share_0_0">
+      <End Role="Filedate" EntitySet="Filedate" />
+      <End Role="Share" EntitySet="Share" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

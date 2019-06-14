@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Filedate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MD5Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FatherFolder" Type="Int64" Nullable="false" />
+    <Property Name="Size" Type="Double" Nullable="false" />
+    <Property Name="FullPath" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RelativePath" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Floder" Relationship="Self.FK_Filedate_0_0" FromRole="Filedate" ToRole="Floder" />
+    <NavigationProperty Name="Share" Relationship="Self.FK_Share_0_0" FromRole="Filedate" ToRole="Share" />
+  </EntityType>
+  <EntityType Name="Floder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FatherDirectory" Type="Int64" Nullable="false" />
+    <Property Name="FullPath" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RelativePath" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Filedate" Relationship="Self.FK_Filedate_0_0" FromRole="Floder" ToRole="Filedate" />
+  </EntityType>
+  <EntityType Name="Share">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileID" Type="Int64" Nullable="false" />
+    <Property Name="Type" Type="Int64" Nullable="false" />
+    <Property Name="ShareCode" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="Path" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+    <Property Name="StartTime" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EndTime" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Filedate" Relationship="Self.FK_Share_0_0" FromRole="Share" ToRole="Filedate" />
+  </EntityType>
+  <Association Name="FK_Filedate_0_0">
+    <End Role="Floder" Type="Self.Floder" Multiplicity="1" />
+    <End Role="Filedate" Type="Self.Filedate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Floder">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Filedate">
+        <PropertyRef Name="FatherFolder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Share_0_0">
+    <End Role="Filedate" Type="Self.Filedate" Multiplicity="1" />
+    <End Role="Share" Type="Self.Share" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Filedate">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Share">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mainEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Filedate" EntityType="Self.Filedate" />
+    <EntitySet Name="Floder" EntityType="Self.Floder" />
+    <EntitySet Name="Share" EntityType="Self.Share" />
+    <AssociationSet Name="FK_Filedate_0_0" Association="Self.FK_Filedate_0_0">
+      <End Role="Floder" EntitySet="Floder" />
+      <End Role="Filedate" EntitySet="Filedate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Share_0_0" Association="Self.FK_Share_0_0">
+      <End Role="Filedate" EntitySet="Filedate" />
+      <End Role="Share" EntitySet="Share" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

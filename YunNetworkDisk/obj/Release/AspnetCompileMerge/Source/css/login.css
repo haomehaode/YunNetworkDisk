@@ -1,0 +1,68 @@
+
+@charset "utf-8";
+
+* {
+    padding: 0;
+    margin: 0
+}
+
+body {
+    font-size: 14px;
+    background-color: #fff;
+}
+.top{
+	background: #fff;
+	height: 45px;
+}
+
+.register{
+	background:url(../assets/images/register.jpg) no-repeat;
+	position: relative;
+    height: 550px;
+    width: 100%;
+    min-width: 1102px;
+    overflow: hidden
+}
+
+.register form{
+	padding: 25px;
+	background-color: #fff;
+	width:20%;
+	position:absolute;
+	right:100px;
+	top:100px;
+	font-size:16px;
+	color:rgb(15, 15, 15);
+}
+
+.register input{
+	margin-top: 10px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+#code{
+    width: 50px;
+}
+#checkbox{
+    margin-top: 15px;
+    height: 10px;
+}
+
+#register_btn{
+	width:270px; 
+	height:50px;
+	border:1px solid rgb(22, 6, 243);
+	border-radius:5px;
+	margin-top: 20px;
+	background-color:  rgb(12, 103, 145);
+	outline:none;
+	color: rgb(240, 240, 247);
+	cursor:pointer;
+} 
+.bottom{
+	padding-top:17px;
+	width: 100%;
+	border: #fff;
+	font-size: 12px;
+	text-align: center;
+}

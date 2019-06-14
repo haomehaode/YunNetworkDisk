@@ -1,0 +1,83 @@
+.window{
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 997;
+	}	
+	.window .window-bg{
+		width: 10000px;
+		height: 10000px;
+		overflow: hidden;
+		background: #000;
+		opacity: 0.8;
+		z-index: 998;
+		filter:alpha(opacity=80);
+		background: url(http://sandbox.runjs.cn/uploads/rs/390/vvqzmrls/gary_bg.png) center center repeat\9 !important;
+	}
+	.window .window-main{
+		z-index: 999;
+		position: fixed;
+		top: 0;
+		width: 260px;
+		padding: 40px;
+		background: #fff;
+		text-align: center;
+		left: 50%;
+		top: 30%;
+		margin-left: -170px;
+	}
+	.window .window-main input{
+		display: inline-block;
+		border: none;
+		background: none;
+		outline: none;
+		height: 40px;
+		line-height: 40px;
+		margin-bottom: 10px;
+		width: 50%;
+		padding:0 4.9%;
+		font-size: 14px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		background: #f9f9f9;
+	}
+	.window .window-main .window-btn{
+		width: 48%;
+		/* background: #66bb6a; */
+		height: 40px;
+		line-height: 40px;
+		color: #fff;
+		border-radius:4px;
+		cursor: pointer;
+		border: 1px solid #ccc;
+		color: #333;
+		float: left;
+		transition: All 0.3s ease;
+		-webkit-transition: All 0.3s ease;
+		-moz-transition: All 0.3s ease;
+		-o-transition: All 0.3s ease;
+	}
+	.window .window-main .window-btn.no{
+		float: left;
+	}
+	.window .window-main .window-btn.yes{
+		float: right;
+		background: #66bb6a;
+		color: #fff;
+		border: 1px solid #66bb6a;
+	}
+	.window .window-main .window-btn.no:hover{
+		background-color: #f6f6f6
+	}
+	.window .window-main .window-btn.yes:hover{
+		background-color: #46BA4B
+	}
+	.window .window-main .err-p{
+		padding-bottom: 10px;
+		font-size: 14px;
+		color: #ff6801;
+		text-align: left;
+		padding-left: 15px;
+	}

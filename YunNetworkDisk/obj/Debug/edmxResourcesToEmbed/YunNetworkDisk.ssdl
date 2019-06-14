@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YunNetworkDiskModel.Store" Provider="Devart.Data.SQLite" ProviderManifestToken="SQLite, 3.27.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Type" Type="text" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="Date" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Main">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Type" Type="text" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="Date" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Music">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Type" Type="text" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="Date" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Other">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Type" Type="text" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="Date" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Type" Type="text" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="Date" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Recycle">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Type" Type="text" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="Date" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PassWord" Type="text" Nullable="false" />
+    <Property Name="Phone" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Type" Type="text" Nullable="false" />
+    <Property Name="Size" Type="real" Nullable="false" />
+    <Property Name="Date" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="YunNetworkDiskModelStoreContainer">
+    <EntitySet Name="File" EntityType="Self.File" Schema="main" store:Type="Tables" />
+    <EntitySet Name="Main" EntityType="Self.Main" Schema="main" store:Type="Tables" />
+    <EntitySet Name="Music" EntityType="Self.Music" Schema="main" store:Type="Tables" />
+    <EntitySet Name="Other" EntityType="Self.Other" Schema="main" store:Type="Tables" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" Schema="main" store:Type="Tables" />
+    <EntitySet Name="Recycle" EntityType="Self.Recycle" Schema="main" store:Type="Tables" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="main" store:Type="Tables" />
+    <EntitySet Name="Video" EntityType="Self.Video" Schema="main" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

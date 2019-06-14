@@ -1,0 +1,655 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>主页</title>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+<body class="fix-header fix-sidebar card-no-border">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        <b>
+                            <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                        </b>
+                        <span> &nbsp; &nbsp;&nbsp;个人赟盘&nbsp;&nbsp;</span>
+                    </a>
+                </div>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark"
+                               href="javascript:void(0)"><i class="ti-menu"></i></a>
+                        </li>
+                        <li class="nav-item hidden-sm-down">
+                            <form class="app-search p-l-20">
+                                <input type="text" class="form-control" name="search" placeholder="Search for..."> <a class="srh-btn"> <i class="ti-search"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <!--头像-->
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href=""
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/images/users/1.jpg" alt="user" class="profile-pic m-r-5" />好么好的
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <div class="scroll-sidebar" style="background-image:url(/assets/images/底.jpg);height:inherit">
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li>
+                            <a href="~/Home" class="waves-effect">
+                                <i class="fa fa-clock-o m-r-10"
+                                   aria-hidden="true"></i>全部文件
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Picture" class="waves-effect">
+                                <i class="fa fa-globe m-r-10"
+                                   aria-hidden="true"></i>图片
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/File" class="waves-effect">
+                                <i class="fa fa-globe m-r-10"
+                                   aria-hidden="true"></i>文档
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Video" class="waves-effect">
+                                <i class="fa fa-globe m-r-10"
+                                   aria-hidden="true"></i>视频
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Music" class="waves-effect">
+                                <i class="fa fa-globe m-r-10"
+                                   aria-hidden="true"></i>音乐
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Other" class="waves-effect">
+                                <i class="fa fa-globe m-r-10"
+                                   aria-hidden="true"></i>其他
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modalone">上传文件</button>
+                </li>
+                <li class="breadcrumb-item">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modaltwo">新建文件夹</button>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:download()" class="btn pull-right hidden-sm-down btn-success">下载文件</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modalthree">重命名</button>
+                </li>
+                <li class="breadcrumb-item">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modalfour">分享</button>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:del()" class="btn pull-right hidden-sm-down btn-success">删除</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modalfive">复制到</button>
+                </li>
+                <li class="breadcrumb-item">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modalsix">移动到</button>
+                </li>
+            </ol>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <h6 onclick="javascript:history.go(-1)">返回上一级</h6>
+                            <div class="table-responsive" style="height:360px;overflow-y:auto">
+                                <table class="table fileList">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" id="all" onclick="checkboxOnclick()"></th>
+                                            <th>文件名</th>
+                                            <th>大小</th>
+                                            <th>修改日期</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            if (ViewBag.DateDirectories != null)
+                                            {
+                                                foreach (var item in ViewBag.DateDirectories)
+                                                {
+
+                                                    <tr>
+                                                        <td><input type="checkbox" name="main" value="@item.Name"></td>
+                                                        <td><img src="~/assets/images/dir.gif" /> &nbsp; &nbsp;<a href="~/Home?name=@item.Name">@item.Name</a></td>
+                                                        <td>—</td>
+                                                        <td>@item.Date</td>
+                                                    </tr>
+                                                }
+                                            }
+                                            if (ViewBag.DateFiles != null)
+                                            {
+                                                foreach (var item in ViewBag.DateFiles)
+                                                {
+
+                                                    <tr>
+                                                        <td><input type="checkbox" name="main" value="@item.Name"></td>
+                                                        <td>@item.Name</td>
+                                                        <td>@System.Math.Ceiling(item.Size / 1024.0)KB</td>
+                                                        <td>@item.Date</td>
+                                                    </tr>
+                                                }
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer text-center">
+                版权所有：“赟”网络科技有限公司<br>
+                技术支持：郑州轻工业学院 官网：
+                <a href="http://www.zzuli.edu.cn">www.zzuli.edu.cn</a>
+            </footer>
+        </div>
+    </div>
+        <!--上传文件-->
+        <div class="modal fade" id="modalone">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">选择需要上传的文件</h4>
+                        <button type="button" class="close" onclick="window.location = '/Home';">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <iframe style="height:500px" src="/FileUpload"></iframe>
+                </div>
+            </div>
+        </div>
+        <!--新建文件夹-->
+        <div class="modal fade" id="modaltwo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">新建文件夹</h4>
+                    </div>
+                    <div class="modal-body">名称&nbsp; &nbsp;&nbsp;<input type="text" style="width:400px" id="newfile" /></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="newfile()">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--重命名-->
+        <div class="modal fade" id="modalthree">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">重命名</h4>
+                    </div>
+                    <div class="modal-body">名称&nbsp; &nbsp;&nbsp;<input type="text" style="width:400px" id="user"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="newname()">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--分享-->
+        <div class="modal fade" id="modalfour">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">分享文件(夹)</h4>
+                        <button type="button" class="close"  onclick="window.location.reload();">
+                            ×
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box">
+                            <div style="position: relative;padding: 0 20px;">
+                                <p style="display: inline-block;"><font color="#09AAFF">链接分享</font></p>
+                            </div>
+                            <div style="position: relative;padding: 0 20px;">
+                                <table class="table">
+                                    <tr>
+                                        <td>分享形式</td>
+                                        <td>
+                                            <select style="width:80px;" id="select1" onchange="document.getElementById('shouhou1').style.visibility = 'hidden';document.getElementById('code').style.visibility = 'hidden'">
+                                                <option value="2">私密</option>
+                                                <option value="1">公开</option>
+                                            </select>
+                                        </td>
+                                        <td id="shouhou1"><font color="#05608F">密码</font></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>有效期</td>
+                                        <td>
+                                            <select style="width:80px;" id="select2">
+                                                <option value="7.0">7天</option>
+                                                <option value="3650.0">永久</option>
+                                            </select>
+                                        </td>
+                                        @{
+                                            var random = new Random();
+                                            <td id="code">@random.Next(1000, 10000)</td>
+                                        }
+                                    </tr>
+                                </table>
+                                <input type="text" style="width:400px" id="sharepath" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick=" share()">生成链接</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--复制到-->
+        <div class="modal fade" id="modalfive">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">复制到</h4>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">
+                            ×
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tree well">
+                            <ul>
+                                <li>
+                                    <span><img src="~/assets/images/dir.gif">&nbsp;全部文件</span>
+                                    @{
+                                        if (ViewBag.DateList != null)
+                                        {
+                                            foreach (var item in ViewBag.DateList)
+                                            {
+                                                <ul>
+                                                    <li>
+                                                        <span><img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick='copy(this)'>@item.text</a>
+
+                                                        @{
+                                                            foreach (var it in @item.children)
+                                                            {
+                                                                <ul>
+                                                                    <li>
+                                                                        <span><img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick='copy(this)'>@it.text</a>
+                                                                        @{
+                                                                            foreach (var i in @it.children)
+                                                                            {
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <span> <img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick='copy(this)'>@i.text</a>
+                                                                                        @{
+                                                                                            foreach (var a in @i.children)
+                                                                                            {
+                                                                                                <ul>
+                                                                                                    <li>
+                                                                                                        <span> <img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick='copy(this)'>@a.text</a>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            }
+                                                                                        }
+                                                                                    </li>
+                                                                                </ul>
+                                                                            }
+                                                                        }
+
+                                                                    </li>
+                                                                </ul>
+                                                            }
+
+                                                        }
+
+                                                    </li>
+                                                </ul>
+                                            }
+                                        }
+                                    }
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--移动到-->
+        <div class="modal fade" id="modalsix">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">移动到</h4>
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">
+                            ×
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tree well">
+                            <ul>
+                                <li>
+                                    <span><img src="~/assets/images/dir.gif">&nbsp;全部文件</span>
+                                    @{
+                                        if (ViewBag.DateList != null)
+                                        {
+                                            foreach (var item in ViewBag.DateList)
+                                            {
+                                                <ul>
+                                                    <li>
+                                                        <span><img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick='move(this)'>@item.text</a>
+
+                                                        @{
+                                                            foreach (var it in @item.children)
+                                                            {
+                                                                <ul>
+                                                                    <li>
+                                                                        <span><img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick="move(this)">@it.text</a>
+                                                                        @{
+                                                                            foreach (var i in @it.children)
+                                                                            {
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <span> <img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick="move(this)">@i.text</a>
+                                                                                        @{
+                                                                                            foreach (var a in @i.children)
+                                                                                            {
+                                                                                                <ul>
+                                                                                                    <li>
+                                                                                                        <span> <img src="~/assets/images/dir.gif">&nbsp;</span><a href="#" onclick="move(this)">@a.text</a>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            }
+                                                                                        }
+                                                                                    </li>
+                                                                                </ul>
+                                                                            }
+                                                                        }
+
+                                                                    </li>
+                                                                </ul>
+                                                            }
+
+                                                        }
+
+                                                    </li>
+                                                </ul>
+                                            }
+                                        }
+                                    }
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">   
+            //全选和取消
+            function checkboxOnclick() {
+                var big = document.getElementById('all');
+                if (big.checked == true) {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = true;
+                    });
+                } else {
+                    $("input[type='checkbox']").each(function () {
+                        this.checked = false;
+                    });
+                }
+            };
+            //新建文件夹
+            function newfile() {
+                $.ajax({
+                    type: 'Post',
+                    url: "/Home/NewFile",
+                    data: {
+                        "newfile": $('#newfile').val(),
+                        "path": getQueryVariable("name")
+                    },
+                    success: function (data) {
+                        if (data) {
+                            window.location.reload();
+                        }
+                        else {
+                            alert("新建文件夹失败");
+                        }
+                    },
+                    error: function (data) {
+                        alert("新建文件夹发生错误");
+
+                    }
+                });
+            };
+            //重命名
+            function newname() {
+                var arr = document.getElementsByName("main");
+                var sum = 0;
+                for (i in arr) {
+                    if (arr[i].checked) {
+                        sum = sum + 1;
+                    }
+                }
+                if (sum == 1) {
+                    for (i in arr) {
+                        if (arr[i].checked) {
+                            $.ajax({
+                                type: 'Post',
+                                url: "/Home/NewName",
+                                data: { "name": arr[i].value, "newname": $('#user').val() },
+                                success: function (data) {
+                                    if (data) {
+                                        window.location.reload();
+                                    }
+                                    else {
+                                        alert("重命名失败");
+                                    }
+                                },
+                                error: function (data) {
+                                    alert("重命名发生错误");
+                                }
+                            });
+                        }
+                    }
+                }
+                else {
+                    alert("请确定重命名文件夹");
+                }
+            };
+            //复制
+            function copy(data) {
+                var arr = document.getElementsByName("main");
+                for (i in arr) {
+                    if (arr[i].checked) {
+                        $.ajax({
+                            type: 'Post',
+                            url: "/Home/Copy",
+                            data: { "name": arr[i].value, "newname": data.innerHTML },
+                            async: true,
+                            success: function (data) {
+                                if (data) {
+                                    alert("复制成功");
+                                }
+                                else {
+                                    alert("复制失败");
+                                }
+                            },
+                            error: function (data) {
+                                alert("复制发生错误");
+                            }
+                        });
+                    }
+                }
+            };
+            //移动
+            function move(data) {
+                var arr = document.getElementsByName("main");
+                for (i in arr) {
+                    if (arr[i].checked) {
+                        $.ajax({
+                            type: 'Post',
+                            url: "/Home/Move",
+                            data: { "name": arr[i].value, "newname": data.innerHTML },
+                            async: true,
+                            success: function (data) {
+                                if (data) {
+                                    window.location.reload();
+                                }
+                                else {
+                                    alert("移动失败");
+                                }
+                            },
+                            error: function (data) {
+                                alert("移动发生错误");
+                            }
+                        });
+                    }
+                }
+            };
+            //删除文件
+            function del() {
+                var arr = document.getElementsByName("main");
+                for (i in arr) {
+                    if (arr[i].checked) {
+                        $.ajax({
+                            type: 'Post',
+                            url: "/Home/Delete",
+                            data: { "name": arr[i].value },
+                            async: true,
+                            success: function (data) {
+                                if (data) {
+                                    window.location.reload();
+                                }
+                                else {
+                                    alert("删除失败");
+                                }
+                            },
+                            error: function (data) {
+                                alert("删除发生错误");
+                            }
+                        });
+                    }
+                }
+            };
+            //下载文件
+            function download() {
+                var arr = document.getElementsByName("main");
+                for (i in arr) {
+                    if (arr[i].checked) {
+                        var aLink = document.createElement('a');
+                        aLink.download = arr[i].value;
+                        aLink.href = "/Home/Download?name=" + encodeURIComponent(arr[i].value);
+                        document.body.appendChild(aLink);
+                        aLink.click();
+                        document.body.removeChild(aLink);
+                    }
+                }
+            };
+            //分享
+            function share() {
+                var arr = document.getElementsByName("main");
+                var sum = 0;
+                for (i in arr) {
+                    if (arr[i].checked) {
+                        sum = sum + 1;
+                    }
+                }
+                if (sum == 1) {
+                    for (i in arr) {
+                        if (arr[i].checked) {
+                            $.ajax({
+                                type: 'Post',
+                                url: "/Home/Share",
+                                data: {
+                                    "name": arr[i].value,
+                                    "host": location.host,
+                                    "type": $('#select1 option:selected').val(),
+                                    "time": $('#select2 option:selected').val(),
+                                    "code": $("#code").text()
+                                },
+                                success: function (data) {
+                                    $('#sharepath').val(data);
+                                },
+                                error: function (data) {
+                                    alert("生成链接出错");
+                                }
+                            });
+                        }
+                    }
+                }
+                else {
+                    alert("当前仅能分享一个文件夹或文件");
+                }
+            };
+            function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split("=");
+                    if (pair[0] == variable) { return pair[1]; }
+                }
+                return (false);
+            };
+        </script>
+        <script src="js/mian.js"></script>
+        <script src="assets/plugins/jquery/jquery.min.js"></script>
+        <script src="assets/plugins/bootstrap/js/tether.min.js"></script>
+        <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/jquery.slimscroll.js"></script>
+        <script src="js/waves.js"></script>
+        <script src="js/sidebarmenu.js"></script>
+        <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <script src="js/custom.min.js"></script>
+        <script src="assets/plugins/flot/jquery.flot.js"></script>
+        <script src="assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+        <script src="js/flot-data.js"></script>
+        <script src="assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '关闭');
+                $('.tree li.parent_li > span').on('click', function (e) {
+                    var children = $(this).parent('li.parent_li').find(' > ul > li');
+                    if (children.is(":visible")) {
+                        children.hide('fast');
+                        $(this).attr('title', '展开').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+                    } else {
+                        children.show('fast');
+                        $(this).attr('title', '关闭').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+                    }
+                    e.stopPropagation();
+                });
+            });
+        </script>
+</body>
+</html>
+

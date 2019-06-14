@@ -1,0 +1,139 @@
+	
+	.pop-btn{
+		cursor: pointer;
+	}
+	.pop-window-bg{
+		width: 10000px;
+		height:10000px;
+		background: #000;
+		opacity: 0.8;
+		filter:alpha(opacity=80);
+		background: url(http://sandbox.runjs.cn/uploads/rs/390/vvqzmrls/gary_bg.png) center center repeat\9 !important;
+		position: fixed;
+		top: 0;
+		z-index: 9998;
+		display: none;
+		overflow: hidden;
+	}
+	.pop-window{
+		padding: 20px;
+		width: 400px;
+		background: #fff;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		z-index: 9999;
+		display: none
+	}
+	.pop-window .pop-h1,
+	.pop-window .pop-h2{
+		text-align: center;
+		color: #333;
+		font-size: 24px;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	.pop-window .pop-h2{
+		font-size: 18px;
+		font-weight: normal;
+		margin-bottom: 8px;
+	}
+	.pop-window input[type='text'],
+	.pop-window textarea{
+		display: block;
+		width: 94%;
+		padding:0 3%;
+		border: none;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		margin-bottom: 10px;
+	}
+	.pop-window input.pop-input{
+		height: 35px;
+		line-height:35px;
+	}
+	.pop-window input.pop-file{
+		margin-bottom: 10px;
+	}
+	.pop-window textarea.pop-text{
+		height: 100px;
+		padding:10px 3%;
+		line-height: 25px;
+		resize: none;
+	}
+	.pop-window .pop-close{
+		cursor: pointer;
+		color: #333;
+		position: absolute;
+		right: 0;
+		top: -10px;
+		font-size: 40px;
+		font-weight: bold;
+	}
+	.pop-window .pop-window-btn-box{
+		text-align: center;
+		cursor: pointer;
+	}
+	.pop-window .pop-window-btn-box .pop-window-btn{
+		font-size: 18px;
+		height: 40px;
+		line-height: 40px;
+		color: #fff;
+		background: #66BB6A;
+		display: inline-block;
+		width: 100%;
+		border: 1px solid #66BB6A;
+		border-radius: 5px;
+		cursor: pointer;
+		text-decoration: none;
+	}
+	.pop-window .pop-window-btn-box .pop-window-btn:hover,
+	.pop-window .pop-window-btn-box .pop-window-btn:active{
+		background: none;
+		color:#66BB6A;
+	}
+	@media screen and (max-width:600px){
+		body{
+		    font-size:62.5%;
+		    font-family: arial,"Hiragino Sans GB","Microsoft Yahei","å¾®è½¯é›…é»‘","å®‹ä½“",Tahoma,Arial,Helvetica,STHeiti;
+		    margin:0px
+		}
+		.w1000{
+			width: 100%;
+		}
+	    input[type='text'],
+	    textarea{
+	        -webkit-appearance: none;
+	    }
+	    .pop-window .pop-close{
+			font-size: 2.6em;
+	    }
+	    .pop-window{
+	    	width: 80%;
+	    }
+	    .pop-window .pop-h1{
+	    	font-size: 2em;
+	    }
+	    .pop-window .pop-h2{
+	    	font-size:1.2em ;
+	    }
+	    .pop-window input.pop-input,
+	    .pop-window textarea.pop-text{
+	    	font-size: 1.2em;
+	    }
+	    .pop-window input.pop-input{
+	    	height: 30px;
+	    	line-height: 30px;
+	    }
+	    .pop-window textarea.pop-text{
+	    	line-height: 20px;
+	    	height: 60px;
+	    }
+	    .pop-window .pop-window-btn-box{
+	    }
+	    .pop-window .pop-window-btn-box .pop-window-btn{
+	    	line-height: 35px;
+	    	height: 35px;
+	    	font-size: 1.3em;
+	    }
+	}

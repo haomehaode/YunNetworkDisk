@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="mainEntities">
+    <EntitySetMapping Name="Filedate">
+      <EntityTypeMapping TypeName="mainModel.Filedate">
+        <MappingFragment StoreEntitySet="Filedate">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MD5Name" ColumnName="MD5Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="FatherFolder" ColumnName="FatherFolder" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="FullPath" ColumnName="FullPath" />
+          <ScalarProperty Name="RelativePath" ColumnName="RelativePath" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Floder">
+      <EntityTypeMapping TypeName="mainModel.Floder">
+        <MappingFragment StoreEntitySet="Floder">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FatherDirectory" ColumnName="FatherDirectory" />
+          <ScalarProperty Name="FullPath" ColumnName="FullPath" />
+          <ScalarProperty Name="RelativePath" ColumnName="RelativePath" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Share">
+      <EntityTypeMapping TypeName="mainModel.Share">
+        <MappingFragment StoreEntitySet="Share">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FileID" ColumnName="FileID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ShareCode" ColumnName="ShareCode" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
